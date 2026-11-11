@@ -2,12 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:news_app/core/providers/theme_provider.dart';
+import 'package:news_app/core/services/shared_preference_service.dart';
 import 'package:news_app/core/utilities/app_themes.dart';
 import 'package:news_app/core/utilities/routes/app_routes.dart';
 import 'package:news_app/core/utilities/routes/app_routes_names.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  await SharedPrefsService.init();
   runApp(
     MultiProvider(
       providers: [

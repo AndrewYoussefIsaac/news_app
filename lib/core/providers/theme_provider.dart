@@ -4,7 +4,7 @@ import 'package:news_app/core/utilities/app_keys.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
-  ThemeMode themeMode = ThemeMode.light;
+  ThemeMode themeMode = ThemeMode.light ;
   
   ThemeProvider(){
     getTheme() ;
