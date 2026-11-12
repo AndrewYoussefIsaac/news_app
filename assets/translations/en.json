@@ -1,3 +1,14 @@
 {
-    
+    "home" : "Home" ,
+    "home_welcome" : "Good Morning\nHere is Some News For You" ,
+    "go_to_home" : "Go To Home" ,
+    "theme" : "Theme" ,
+    "general" : "General" ,
+    "business" : "Business" , 
+    "sports" : "Sports" , 
+    "technology" : "Technology" , 
+    "entertainment" : "Entertainment" ,
+    "health" : "Health" ,
+    "science" : "Science" ,
+    "view_all" : "View All"
 }
