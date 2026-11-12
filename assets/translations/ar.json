@@ -1,3 +1,13 @@
 {
-    
+    "home": "الصفحة الرئيسية",
+    "home_welcome": "صباح الخير\nإليك بعض الأخبار",
+    "go_to_home" : "العودة للصفحة الرئيسية" ,
+    "general": "عام",
+    "business": "أعمال",
+    "sports": "رياضة",
+    "technology": "تكنولوجيا",
+    "entertainment": "ترفيه",
+    "health": "صحة",
+    "science": "علوم",
+    "view_all": "عرض الكل"
 }
