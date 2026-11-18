@@ -3,6 +3,9 @@
     "home_welcome" : "Good Morning\nHere is Some News For You" ,
     "go_to_home" : "Go To Home" ,
     "theme" : "Theme" ,
+    "dark" : "Dark" ,
+    "light" : "Light" ,
+    "language" : "Language",
     "general" : "General" ,
     "business" : "Business" , 
     "sports" : "Sports" , 
@@ -10,5 +13,6 @@
     "entertainment" : "Entertainment" ,
     "health" : "Health" ,
     "science" : "Science" ,
-    "view_all" : "View All"
+    "view_all" : "View All" ,
+    "mock" : "Nobel Prize in physics awarded to two scientists for machine learning discoveries what an achievement ! "
 }

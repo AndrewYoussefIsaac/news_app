@@ -41,4 +41,10 @@ class AppFonts {
     fontSize: 24 ,
     fontWeight: .w700 ,
   ) ;
+
+  static const TextStyle medium35 = TextStyle(
+    fontFamily: "Inter" ,
+    fontSize: 35 ,
+    fontWeight: .w500 ,
+  ) ;
 }
