@@ -8,6 +8,10 @@ class AppImages {
   static const theme = "assets/images/theme.svg" ;
   static const language = "assets/images/language.svg" ;
 
+  static const dropdownArrow = "assets/images/arrow.svg" ;
+  static const rightArrow = "assets/images/right_arrow.svg" ;
+  static const leftArrow = "assets/images/left_arrow.svg" ;
+
   static const general = "assets/images/general.png" ;
   static const darkGeneral = "assets/images/general_dark.png" ;
   static const business = "assets/images/busniess.png" ;
@@ -23,5 +27,6 @@ class AppImages {
   static const technology = "assets/images/technology.png" ;
   static const darkTechnology = "assets/images/technology_dark.png" ;
 
+  static const mock = "assets/images/mock.png" ;
   
 }

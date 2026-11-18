@@ -2,14 +2,25 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:news_app/core/models/category_model.dart';
 import 'package:news_app/core/providers/theme_provider.dart';
 import 'package:news_app/core/utilities/app_colors.dart';
 import 'package:news_app/core/utilities/app_fonts.dart';
 import 'package:news_app/core/utilities/app_images.dart';
+import 'package:news_app/modules/main_layout/screens/article_screen.dart';
+import 'package:news_app/modules/main_layout/screens/home_screen.dart';
+import 'package:news_app/modules/main_layout/widgets/custom_drawer.dart';
 import 'package:provider/provider.dart';
 
-class MainLayoutScreen extends StatelessWidget {
+class MainLayoutScreen extends StatefulWidget {
   const MainLayoutScreen({super.key});
+
+  @override
+  State<MainLayoutScreen> createState() => _MainLayoutScreenState();
+}
+
+class _MainLayoutScreenState extends State<MainLayoutScreen> {
+  CategoryModel? selectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +28,13 @@ class MainLayoutScreen extends StatelessWidget {
     bool isLight = themeProvider.themeMode == ThemeMode.light ;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: isLight 
+            ? AppColors.white 
+            :AppColors.black ,
         title: Text(
-          "home".tr() ,
+          selectedCategory == null 
+              ? "home".tr()
+              : selectedCategory!.title.tr() ,
           style: AppFonts.medium20.copyWith(
             color: isLight 
                 ? AppColors.black
@@ -43,67 +59,20 @@ class MainLayoutScreen extends StatelessWidget {
           ) , 
         ] ,
       ),
-      drawer: Drawer(
-        backgroundColor: AppColors.black ,
-        child: Column(
-          spacing: 24.h ,
-          children: [
-            DrawerHeader(
-              margin: EdgeInsets.all(0) ,
-              padding: EdgeInsetsGeometry.zero,
-              child: Container(
-                  color: AppColors.white ,
-                  child: Center(
-                    child: Text(
-                      "News App" ,
-                      style: AppFonts.bold24.copyWith( color: AppColors.black ) ,
-                    ),
-                ),
-              )
-            ) ,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Row(
-                spacing: 16 ,
-                children: [
-                  SvgPicture.asset(
-                    AppImages.home ,
-                    width: 24.w ,
-                    height: 24.h ,
-                    colorFilter: ColorFilter.mode( AppColors.white , .srcIn ), 
-                  ) ,
-                  Text(
-                    "go_to_home".tr() ,
-                    style: AppFonts.bold24.copyWith( color: AppColors.white ) ,
-                  )
-                ],
-              ),
-            ) ,
-            Divider(
-              indent: 16.w ,
-              endIndent: 16.w ,
-            ) ,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Row(
-                spacing: 16 ,
-                children: [
-                  SvgPicture.asset(
-                    AppImages.theme ,
-                    width: 24.w ,
-                    height: 24.h ,
-                    colorFilter: ColorFilter.mode( AppColors.white , .srcIn ), 
-                  ) ,
-                  Text(
-                    "theme".tr() ,
-                    style: AppFonts.bold24.copyWith( color: AppColors.white ) ,
-                  )
-                ],
-              ),
-            ) ,
-          ],
-        ) ,
-      ),
+      drawer: CustomDrawer( 
+        onTap: () {
+          selectedCategory = null ;
+          setState(() { });
+        },
+      ) ,
+      body: selectedCategory == null 
+          ? HomeScreen(
+            onTap: ( CategoryModel newCategory ) { 
+              selectedCategory = newCategory ;
+              setState(() {});
+            },
+          )
+          : ArticleScreen( category: selectedCategory ,) ,
     );
   }
 }
