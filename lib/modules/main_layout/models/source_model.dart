@@ -1,13 +1,11 @@
-/// YApi QuickType插件生成，具体参考文档:https://plugins.jetbrains.com/plugin/18847-yapi-quicktype/documentation
-
 import 'dart:convert';
 
-SourceModel sourceModelFromJson(String str) => SourceModel.fromJson(json.decode(str));
+SourceResponse sourceModelFromJson(String str) => SourceResponse.fromJson(json.decode(str));
 
-String sourceModelToJson(SourceModel data) => json.encode(data.toJson());
+String sourceModelToJson(SourceResponse data) => json.encode(data.toJson());
 
-class SourceModel {
-    SourceModel({
+class SourceResponse {
+    SourceResponse({
         required this.sources,
         required this.status,
     });
@@ -15,7 +13,7 @@ class SourceModel {
     List<Source> sources;
     String status;
 
-    factory SourceModel.fromJson(Map<dynamic, dynamic> json) => SourceModel(
+    factory SourceResponse.fromJson(Map<dynamic, dynamic> json) => SourceResponse(
         sources: List<Source>.from(json["sources"].map((x) => Source.fromJson(x))),
         status: json["status"],
     );
@@ -66,16 +64,16 @@ class Source {
     };
 }
 
-enum Category { GENERAL, BUSINESS, TECHNOLOGY, SPORTS, ENTERTAINMENT, HEALTH, SCIENCE }
+enum Category { general , business , technology , sports , entertainment , health , science }
 
 final categoryValues = EnumValues({
-    "business": Category.BUSINESS,
-    "entertainment": Category.ENTERTAINMENT,
-    "general": Category.GENERAL,
-    "health": Category.HEALTH,
-    "science": Category.SCIENCE,
-    "sports": Category.SPORTS,
-    "technology": Category.TECHNOLOGY
+    "business": Category.business ,
+    "entertainment": Category.entertainment ,
+    "general": Category.general ,
+    "health": Category.health ,
+    "science": Category.science ,
+    "sports": Category.sports ,
+    "technology": Category.technology ,
 });
 
 class EnumValues<T> {

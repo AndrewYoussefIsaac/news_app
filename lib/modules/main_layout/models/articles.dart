@@ -1,13 +1,11 @@
-/// YApi QuickType插件生成，具体参考文档:https://plugins.jetbrains.com/plugin/18847-yapi-quicktype/documentation
-
 import 'dart:convert';
 
-Articles articlesFromJson(String str) => Articles.fromJson(json.decode(str));
+NewsResponse articlesFromJson(String str) => NewsResponse.fromJson(json.decode(str));
 
-String articlesToJson(Articles data) => json.encode(data.toJson());
+String articlesToJson(NewsResponse data) => json.encode(data.toJson());
 
-class Articles {
-    Articles({
+class NewsResponse {
+    NewsResponse({
         required this.totalResults,
         required this.articles,
         required this.status,
@@ -17,10 +15,15 @@ class Articles {
     List<Article> articles;
     String status;
 
-    factory Articles.fromJson(Map<dynamic, dynamic> json) => Articles(
-        totalResults: json["totalResults"],
-        articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
-        status: json["status"],
+    factory NewsResponse.fromJson(Map<dynamic, dynamic> json) => NewsResponse(
+        totalResults: json["totalResults"] ?? 0,
+        articles: List<Article>.from(
+          ((json["articles"] ?? []) as List)
+              .map((x) => Article.fromJson(x))
+              // NewsAPI returns deleted articles with title "[Removed]" and no data
+              .where((article) => article.title != "[Removed]"),
+        ),
+        status: json["status"] ?? "",
     );
 
     Map<dynamic, dynamic> toJson() => {
@@ -46,20 +49,21 @@ class Article {
     String? author;
     String? urlToImage;
     String description;
-    Source source;
+    ArticleSource source;
     String title;
     String url;
     String content;
 
     factory Article.fromJson(Map<dynamic, dynamic> json) => Article(
-        publishedAt: DateTime.parse(json["publishedAt"]),
+        // tryParse returns null instead of throwing if the date is missing/invalid
+        publishedAt: DateTime.tryParse(json["publishedAt"] ?? "") ?? DateTime.now(),
         author: json["author"],
         urlToImage: json["urlToImage"],
-        description: json["description"],
-        source: Source.fromJson(json["source"]),
-        title: json["title"],
-        url: json["url"],
-        content: json["content"],
+        description: json["description"] ?? "",
+        source: ArticleSource.fromJson(json["source"] ?? {}),
+        title: json["title"] ?? "",
+        url: json["url"] ?? "",
+        content: json["content"] ?? "",
     );
 
     Map<dynamic, dynamic> toJson() => {
@@ -74,8 +78,8 @@ class Article {
     };
 }
 
-class Source {
-    Source({
+class ArticleSource {
+    ArticleSource({
         required this.name,
         this.id,
     });
@@ -83,8 +87,8 @@ class Source {
     String name;
     String? id;
 
-    factory Source.fromJson(Map<dynamic, dynamic> json) => Source(
-        name: json["name"],
+    factory ArticleSource.fromJson(Map<dynamic, dynamic> json) => ArticleSource(
+        name: json["name"] ?? "",
         id: json["id"],
     );
 
