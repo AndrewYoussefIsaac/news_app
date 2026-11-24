@@ -41,6 +41,9 @@ dependencies:
   flutter_native_splash: ^2.4.8
   animate_do: ^5.1.0
   flutter_svg: ^2.3.4
+  dio: ^5.11.1
+  timeago: ^3.7.1
+  flutter_dotenv: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
     - assets/translations/
     - assets/images/
     - assets/fonts/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

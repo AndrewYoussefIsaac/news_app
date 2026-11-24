@@ -13,6 +13,5 @@
     "entertainment" : "Entertainment" ,
     "health" : "Health" ,
     "science" : "Science" ,
-    "view_all" : "View All" ,
-    "mock" : "Nobel Prize in physics awarded to two scientists for machine learning discoveries what an achievement ! "
+    "view_all" : "View All" 
 }
