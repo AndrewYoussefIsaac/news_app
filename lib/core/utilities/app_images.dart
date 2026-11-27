@@ -27,6 +27,5 @@ class AppImages {
   static const technology = "assets/images/technology.png" ;
   static const darkTechnology = "assets/images/technology_dark.png" ;
 
-  static const mock = "assets/images/mock.png" ;
   
 }

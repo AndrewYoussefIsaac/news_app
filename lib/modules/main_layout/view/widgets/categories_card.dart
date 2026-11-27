@@ -5,7 +5,7 @@ import 'package:news_app/core/models/category_model.dart';
 import 'package:news_app/core/providers/theme_provider.dart';
 import 'package:news_app/core/utilities/app_colors.dart';
 import 'package:news_app/core/utilities/app_fonts.dart';
-import 'package:news_app/modules/main_layout/widgets/custom_category_card_button.dart';
+import 'package:news_app/modules/main_layout/view/widgets/custom_category_card_button.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesCard extends StatelessWidget {
