@@ -2,28 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:news_app/core/models/category_model.dart';
 import 'package:news_app/core/providers/theme_provider.dart';
 import 'package:news_app/core/utilities/app_colors.dart';
 import 'package:news_app/core/utilities/app_fonts.dart';
 import 'package:news_app/core/utilities/app_images.dart';
-import 'package:news_app/modules/main_layout/screens/article_screen.dart';
-import 'package:news_app/modules/main_layout/screens/home_screen.dart';
-import 'package:news_app/modules/main_layout/widgets/custom_drawer.dart';
+import 'package:news_app/modules/main_layout/view/screens/article_screen.dart';
+import 'package:news_app/modules/main_layout/view/screens/home_screen.dart';
+import 'package:news_app/modules/main_layout/view/widgets/custom_drawer.dart';
+import 'package:news_app/modules/main_layout/view_model/news_provider.dart';
 import 'package:provider/provider.dart';
 
-class MainLayoutScreen extends StatefulWidget {
+class MainLayoutScreen extends StatelessWidget  {
   const MainLayoutScreen({super.key});
 
   @override
-  State<MainLayoutScreen> createState() => _MainLayoutScreenState();
-}
-
-class _MainLayoutScreenState extends State<MainLayoutScreen> {
-  CategoryModel? selectedCategory;
-
-  @override
   Widget build(BuildContext context) {
+    NewsProvider newsProvider = Provider.of<NewsProvider>( context , listen: true ) ;
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context) ;
     bool isLight = themeProvider.themeMode == ThemeMode.light ;
     return Scaffold(
@@ -32,9 +26,9 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
             ? AppColors.white 
             :AppColors.black ,
         title: Text(
-          selectedCategory == null 
+          newsProvider.selectedCategory == null 
               ? "home".tr()
-              : selectedCategory!.title.tr() ,
+              : newsProvider.selectedCategory!.title.tr() ,
           style: AppFonts.medium20.copyWith(
             color: isLight 
                 ? AppColors.black
@@ -61,18 +55,14 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
       ),
       drawer: CustomDrawer( 
         onTap: () {
-          selectedCategory = null ;
-          setState(() { });
+          newsProvider.goHome() ;
+          Navigator.pop(context) ; // to auto close the drawer
         },
       ) ,
-      body: selectedCategory == null 
-          ? HomeScreen(
-            onTap: ( CategoryModel newCategory ) { 
-              selectedCategory = newCategory ;
-              setState(() {});
-            },
-          )
-          : ArticleScreen( category: selectedCategory ,) ,
+      body: newsProvider.selectedCategory == null 
+          ? HomeScreen( onTap: newsProvider.updateSelectedCategory , )
+          : ArticleScreen( ) ,
     );
   }
+
 }

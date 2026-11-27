@@ -4,7 +4,7 @@ import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:news_app/core/providers/theme_provider.dart';
 import 'package:news_app/core/utilities/app_colors.dart';
 import 'package:news_app/core/utilities/app_fonts.dart';
-import 'package:news_app/modules/main_layout/models/articles.dart';
+import 'package:news_app/modules/main_layout/model/models/articles.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

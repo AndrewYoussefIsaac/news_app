@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:news_app/core/models/category_model.dart';
 import 'package:news_app/core/utilities/app_fonts.dart';
-import 'package:news_app/modules/main_layout/widgets/categories_card.dart';
+import 'package:news_app/modules/main_layout/view/widgets/categories_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.onTap});

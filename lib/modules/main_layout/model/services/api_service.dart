@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/core/network/dio_service.dart';
-import 'package:news_app/modules/main_layout/models/articles.dart';
-import 'package:news_app/modules/main_layout/models/source_model.dart';
+import 'package:news_app/modules/main_layout/model/models/articles.dart';
+import 'package:news_app/modules/main_layout/model/models/source_model.dart';
 
 class ApiService {
   
